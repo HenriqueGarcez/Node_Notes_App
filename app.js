@@ -3,23 +3,22 @@ const yargs = require('yargs');
 
 const notes = require('./notes/notes.js');
 
+// Setting up yargs and looking for data input
 const argv = yargs.argv;
 var command = argv._[0];
-// console.log(process.argv);
-//console.log('Yargs: ' + argv);
-debugger;
 
-console.log(argv);
+//console.log(argv);
 
+// Avaiable commands = add, list, read, remove
 if(command === 'add'){
 
     var note = notes.addNote(argv.title, argv.body);
     if(note){
-        console.log('Nota: ');
+        console.log('Note: ');
         console.log(`Title: ${note.title}`);
         console.log(`Body: ${note.body}`);
     }else{
-        console.log('Já existe uma nota com esse título');
+        console.log('This title is already in use');
     }
 }else if(command === 'list'){
 
@@ -35,7 +34,6 @@ if(command === 'add'){
     }else{
         console.log('Note not found!');
     }
-  //  console.log(notaLida.body);
 
 }else if( command === 'remove'){
     var noteRemoved = notes.removeNote(argv.title);

@@ -1,15 +1,9 @@
 const fs = require('fs');
 
-// CONVERTENDO ARRAY PARA OBJETO
-// const arrayToObject = (array) =>
-//    array.reduce((obj, item) => {
-//      obj[item.id] = item
-//      return obj
-//    }, {})
-
-var fetchNotes = () => {
+// fn() to read(retrieve) notes from file
+const fetchNotes = () => {
     try{
-        var noteString = fs.readFileSync('notes_json.json');
+        const noteString = fs.readFileSync('notes_json.json');
         return JSON.parse(noteString);
         
     } catch(e){
@@ -17,17 +11,18 @@ var fetchNotes = () => {
     }    
 };
 
-var saveNote = (notes) => {
+// fn() to write notes in file
+const saveNote = (notes) => {
     fs.writeFileSync('notes_json.json', JSON.stringify(notes));
 }
 
-var addNote = (title, body) => {
-    var notes = fetchNotes();
-    var note = {
+const addNote = (title, body) => {
+    const notes = fetchNotes(); // retrieve existing Notes
+    const note = {
         title,
         body
     }
-    var duplicateNotes = notes.filter( (nota) => nota.title === title  ); // retorna boolean na arrow function, para a variavel duplicateNotes ---- (nota) => nota.title funciona como foreach
+    const duplicateNotes = notes.filter( (nota) => nota.title === title  ); // return true if find any title that matches ---- (nota) => nota.title works as a foreach
     if(duplicateNotes.length === 0){  
         notes.push(note);
         saveNote(notes);
@@ -35,22 +30,22 @@ var addNote = (title, body) => {
     }
 };
 
-var getAll = () => {
+const getAll = () => {
 
     return fetchNotes();
 };
 
-var getNote = (title) => {
+const getNote = (title) => {
 
-    var notes = fetchNotes();
-    var filteredNotes = notes.filter( (nota) => nota.title === title );
+    const notes = fetchNotes();
+    let filteredNotes = notes.filter( (nota) => nota.title === title );
     return filteredNotes[0];
 }
 
-var removeNote = (title) => {
+const removeNote = (title) => {
 
-    var notes = fetchNotes();
-    var filteredNotes = notes.filter( (nota) => nota.title !== title );
+    const notes = fetchNotes();
+    let filteredNotes = notes.filter( (nota) => nota.title !== title );
     saveNote(filteredNotes);
 
     return notes.length !== filteredNotes.legnth;
