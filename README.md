@@ -1,5 +1,5 @@
 # Node_notes_app
- Nodejs simple Application to manage data input and save it to a .json file.
+ Nodejs Application to manage data input and save it to a .json file.
  #  Features
   - Read/Write in JSON files
   - Managing data input with Yargs
