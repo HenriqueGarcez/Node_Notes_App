@@ -22,7 +22,7 @@ const addNote = (title, body) => {
         title,
         body
     }
-    const duplicateNotes = notes.filter( (nota) => nota.title === title  ); // return true if find any title that matches ---- (nota) => nota.title works as a foreach
+    const duplicateNotes = notes.filter( (nota) => nota.title === title  ); // return true if it finds any title that match ---- (nota) => nota.title works as a foreach
     if(duplicateNotes.length === 0){  
         notes.push(note);
         saveNote(notes);
